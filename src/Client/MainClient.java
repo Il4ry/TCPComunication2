@@ -33,14 +33,22 @@ public class MainClient {
             System.out.println("Messaggio inviato");
             BufferedReader br = new BufferedReader(new InputStreamReader(socket.getInputStream()));
             String messaggioServer = br.readLine();
-            System.out.println("Scrivi il messaggio da voler mandare al server: ");
+            /*System.out.println("Scrivi il messaggio da voler mandare al server: ");
             String messaggioClient = sc.nextLine();
             pw.println(messaggioClient);
             pw.flush();
-            System.out.println("Messaggio inviato");
-            String rispostaServer = br.readLine();
-            if(rispostaServer.equals("")){
-
+            System.out.println("Messaggio inviato");*/
+            if(messaggioServer.isEmpty()){
+                System.out.println("messaggio vuoto");
+                socket.close();
+                System.out.println("Socket chiusa");
+            }else{
+                System.out.println("Server: "+ messaggioServer);
+                System.out.println("Scrivi il messaggio da voler mandare al server: ");
+                String messaggioClient = sc.nextLine();
+                pw.println(messaggioClient);
+                pw.flush();
+                System.out.println("Messaggio inviato");
             }
 
         } catch (IOException e) {

@@ -23,16 +23,21 @@ public class MainServer {
             System.out.println("\nSERVER: in attesa di richieste dal cliente");
             Socket clientSocket = server.accept();
             BufferedReader br = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
-            String messaggio = br.readLine();
+            String messaggioClient = br.readLine();
             System.out.println("Connessione riuscita");
             System.out.println("Client connesso: " + clientSocket);
             OutputStream outputStream = clientSocket.getOutputStream();
             PrintWriter pw= new PrintWriter(outputStream);
             Scanner sc = new Scanner(System.in);
-            if(messaggio.equals("")){
-                System.out.println("Scrivi il messaggio da voler mandare al server: ");
-                String messaggioClient = sc.nextLine();
-                pw.println(messaggioClient);
+            if(messaggioClient.isEmpty()){
+                clientSocket.close();
+                sc.close();
+                br.close();
+            }else{
+                System.out.println("Client: " + messaggioClient);
+                System.out.println("Scrivi il messaggio da voler mandare al client: ");
+                String messaggioServer = sc.nextLine();
+                pw.println(messaggioServer);
                 pw.flush();
                 System.out.println("Messaggio inviato");
             }
