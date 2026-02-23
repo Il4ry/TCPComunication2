@@ -1,12 +1,14 @@
 package Server;
 
+import java.io.*;
+import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.Scanner;
 
 public class MainServer {
     public static void main(String[] args) {
         System.out.println("SERVER: Inizio esecuzione");
-
+/*
         System.out.println("Inserire numero della porta: ");
         Scanner sc = new Scanner(System.in);
         int porta = sc.nextInt();
@@ -14,8 +16,9 @@ public class MainServer {
 
         Socket clientSocket = s.attendi();
         s.leggi();
-
-        /*try {
+        s.scrivi();
+*/
+        try {
             ServerSocket server = new ServerSocket(3000);
             System.out.println("\nSERVER: in attesa di richieste dal cliente");
             Socket clientSocket = server.accept();
@@ -23,10 +26,19 @@ public class MainServer {
             String messaggio = br.readLine();
             System.out.println("Connessione riuscita");
             System.out.println("Client connesso: " + clientSocket);
-            System.out.println("Messaggio del client: " + messaggio);
+            OutputStream outputStream = clientSocket.getOutputStream();
+            PrintWriter pw= new PrintWriter(outputStream);
+            Scanner sc = new Scanner(System.in);
+            if(messaggio.equals("")){
+                System.out.println("Scrivi il messaggio da voler mandare al server: ");
+                String messaggioClient = sc.nextLine();
+                pw.println(messaggioClient);
+                pw.flush();
+                System.out.println("Messaggio inviato");
+            }
         } catch (IOException e) {
             System.out.println("SERVER: Errore di connessone");
-        }*/
+        }
 
 
     }

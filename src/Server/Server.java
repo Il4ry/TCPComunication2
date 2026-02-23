@@ -64,8 +64,8 @@ public class Server {
     public void termina(){
         try {
             if (clientSocket != null && !clientSocket.isClosed()) {
-                clientSocket.close();
-                System.out.println("Connessione chiusa con il client");
+                serverSocket.close();
+                System.out.println("Connessione chiusa");
                 sc.close();
             }
         } catch (IOException e) {
