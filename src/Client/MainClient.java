@@ -8,8 +8,23 @@ public class MainClient {
     public static void main(String[] args) {
         System.out.println("CLIENT: avvio del client");
 
+        Client c = new Client("Ilaria");
+        c.connetti("localhost", 3000);
+        c.scrivi();
+        String messaggioServer;
+        while (true){
+            if(messaggioServer.isEmpty){
+                System.out.println("Messaggio vuoto");
+                c.chiudi();
+                break;
+            }else{
+                messaggioServer= c.leggi();
+                c.scrivi();
+            }
+        }
+        
 
-        try {
+        /*try {
             Socket socket = new Socket("localhost", 3000);
             OutputStream outputStream = socket.getOutputStream();
             PrintWriter pw = new PrintWriter(outputStream);
@@ -41,6 +56,6 @@ public class MainClient {
         } catch (IOException e) {
             System.out.println("Errore");
 
-        }
+        }*/
     }
 }

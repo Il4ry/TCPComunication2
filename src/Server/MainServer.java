@@ -9,8 +9,21 @@ public class MainServer {
     public static void main(String[] args) {
         System.out.println("SERVER: Inizio esecuzione");
 
+        Server s = new Server(3000);
+        Socket client = s.attendi();
+        messaggioClient= s.leggi();
+        while(true){
+            if(messaggioClient.isEmpty()){
+                System.out.println("Messaggio vuoto");
+                s.chiudi();
+                s.termina();
+            }else{
+                s.scrivi();
+                
+            }
+        }
 
-        try {
+        /*try {
             ServerSocket server = new ServerSocket(3000);
             System.out.println("\nSERVER: in attesa di richieste dal cliente");
             Socket clientSocket = server.accept();
@@ -41,6 +54,6 @@ public class MainServer {
             }
         } catch (IOException e) {
             System.out.println("SERVER: Errore di connessone");
-        }
+        }*/
     }
 }
