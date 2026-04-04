@@ -38,14 +38,15 @@ public class Client {
     }
 
     public String leggi(){
+        String messaggioServer= null;
         try {
             BufferedReader br = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-            String messaggio = br.readLine();
-            System.out.println("Messaggio del server: " + messaggio);
+            messaggioServer = br.readLine();
+            System.out.println("Messaggio del server: " + messaggioServer);
         } catch (IOException e) {
             System.out.println("Errore nella lettura del messaggio");
         }
-        return messaggio;
+        return messaggioServer;
     }
 
     public void chiudi() {

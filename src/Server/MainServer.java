@@ -11,7 +11,7 @@ public class MainServer {
 
         Server s = new Server(3000);
         Socket client = s.attendi();
-        messaggioClient= s.leggi();
+        String messaggioClient= s.leggi();
         while(true){
             if(messaggioClient.isEmpty()){
                 System.out.println("Messaggio vuoto");
