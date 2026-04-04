@@ -11,15 +11,15 @@ public class MainClient {
         Client c = new Client("Ilaria");
         c.connetti("localhost", 3000);
         c.scrivi();
-        String messaggioServer;
-        while (true){
-            if(messaggioServer.isEmpty){
+        String messaggioServer=c.leggi();
+        while (messaggioServer!=null){
+            if(messaggioServer.isEmpty()){
                 System.out.println("Messaggio vuoto");
                 c.chiudi();
                 break;
             }else{
-                messaggioServer= c.leggi();
                 c.scrivi();
+                messaggioServer= c.leggi();
             }
         }
         

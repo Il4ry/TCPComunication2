@@ -29,9 +29,10 @@ public class Server {
     }
 
     public String leggi(){
+        String messaggio =null;
         try {
             BufferedReader br = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
-            String messaggio = br.readLine();
+            messaggio = br.readLine();
             System.out.println("Messaggio del client: " + messaggio);
         } catch (IOException e) {
             System.out.println("Errore nella lettura del messaggio");

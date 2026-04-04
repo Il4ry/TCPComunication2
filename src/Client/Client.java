@@ -31,7 +31,7 @@ public class Client {
             String messaggio = sc.nextLine();
             pw.println(messaggio);
             pw.flush();
-            System.out.println(host + ": ha inviato un messaggio al server");
+            System.out.println("Messaggio inviato");
         } catch (IOException e) {
             System.out.println("Errore messaggio non inviato");
         }

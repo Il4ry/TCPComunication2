@@ -12,14 +12,15 @@ public class MainServer {
         Server s = new Server(3000);
         Socket client = s.attendi();
         String messaggioClient= s.leggi();
-        while(true){
+        while(messaggioClient!=null){
             if(messaggioClient.isEmpty()){
                 System.out.println("Messaggio vuoto");
                 s.chiudi();
                 s.termina();
+                break;
             }else{
                 s.scrivi();
-                
+                messaggioClient= s.leggi();
             }
         }
 
